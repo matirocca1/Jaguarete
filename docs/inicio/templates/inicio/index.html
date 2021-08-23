@@ -1,0 +1,43 @@
+{% extends 'inicio/base.html' %}
+{% load static %}
+{% block title %} inicio {% endblock %}
+{% block content %}
+
+<div class="container mx-auto my-5 text-center">
+    <h1 class="mb-5">Nuestras novedades</h1>
+    <div class="row mx-auto">
+        {% for producto in ultimos_tres %}
+            <div class="col-4 sm-1 mb-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                    <a href="{% url 'detalle' producto.id %}">
+                        <img src="{{ producto.imagen.url }}" class="card-img-top">
+                    </a>
+                    <h5 style="margin-top: 5px;">{{ producto.nombre }}</h5>
+                    <h6>${{ producto.precio }}</h6>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'detalle' producto.id %}">
+                    <button class="btn-info btn-block mx-auto">Ver producto</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="container mx-auto my-5">
+    <h3 class="text-center mb-5">MÁS PRODUCTOS</h3>
+    {% for producto in ultimos_siete %}
+    <ul>
+        <li> 
+        <a href="{% url 'detalle' producto.id %}">  {{producto.nombre}} </a>
+        : {{producto.descripcion}}  
+        </li>
+    </ul>
+
+{% endfor %}
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,30 @@
+{% extends 'productos/base.html' %}
+{% block title %} Editar producto {% endblock %}
+{% load static %}
+{% block content %}
+
+<div class="container mx-auto">
+    <h1 class="my-3">Editar "{{ producto.nombre }}</h1>
+    <form enctype="multipart/form-data" method="POST" class="my-3">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" class="form-control" name="nombre">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="form-group">
+                    <label>Precio</label>
+                    <input type="number" class="form-control" name="precio">
+                </div>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Editar"/>
+    </form>
+</div>
+
+{% endblock %}

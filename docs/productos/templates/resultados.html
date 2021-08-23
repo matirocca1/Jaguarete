@@ -1,0 +1,21 @@
+{% extends 'productos/base.html' %}
+{% load static %}
+{% block title %} Resultados {% endblock %}
+{% block content %}
+
+
+
+{% if productos %}
+    <h1 class="ml-5 my-3"> Resultados de tu busqueda </h1>
+    <div class="container ml-5" style="margin-bottom:27.4%">
+    {% for producto in productos %}
+    <li>
+        <a href="{% url 'detalle' producto.id %}">{{ producto.nombre }}</a>
+    </li>
+    {% endfor %}
+    </div>
+{% else %}
+<h3> Lo sentimos, no hay resultados para tu busqueda </h3>
+{% endif %}
+
+{% endblock %}

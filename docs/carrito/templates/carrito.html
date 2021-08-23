@@ -1,0 +1,49 @@
+{% extends 'carrito/base.html' %}
+{% load static %}
+{% block title %} Carrito {% endblock %}
+{% block content %}
+<div class="container my-3">
+    <a href="{% url 'inicio' %}" class="d-inline float-left btn btn-outline-info">Seguir comprando</a>
+    <a href="{% url 'limpiar' %}" class="d-inline float-right btn btn-danger-info">Vaciar carrito</a>
+</div>
+<div class="container text-center mx-auto">
+<h2 class="text-center my-5">Mi carrito</h2>
+<table class="table table-bordered mx-auto">
+    <thead>
+
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Suma</th>
+    </thead>
+    <tbody>
+
+        {% if request.session.carro.items %}
+            {% for key, value in request.session.carro.items %}
+                <tr class="text-center">
+                    <td> {{value.nombre}} </td>
+                    <td>
+                        <a href="{% url 'agregar' value.producto_id %}"class="btn btn-sm btn-info">+</a>
+                        {{value.cantidad}} 
+                        <a href="{% url 'restar' value.producto_id %}"class="btn btn-sm btn-danger">-</a>
+                        <a href="{% url 'eliminar' value.producto_id %}"class="btn btn-sm btn-outline-danger">Eliminar</a>
+                    </td>
+                    <td>${{ value.precio }}</td>
+                </tr>
+            {% endfor %}
+        
+        {% else%}
+            <tr>
+                <td colspan="3">
+                    <div class="alert alert-danger text-center">Sin productos</div>
+
+                </td>
+            </tr>
+        {% endif %}
+            
+    </tbody>
+</table>
+</div>
+<br>
+<h5 style="margin-left: 21%;">Total a pagar: ${{ importe_total_carro }}   </h5>
+<button style="margin-left: 72%;" class=" btn btn-outline-success">Finalizar compra</button>
+{% endblock %}

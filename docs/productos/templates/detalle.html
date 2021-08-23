@@ -1,0 +1,33 @@
+{% extends 'productos/base.html' %}
+{% block title %} {{producto.nombre}} {% endblock %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-5 mr-3">
+    <div class="row">
+        <div class="col-6">
+            <img src="{{ producto.imagen.url }}" style="height: 400px;">
+        </div>
+        <div class="col-6">
+            <h2>{{ producto.nombre }}</h2>
+            <br>
+            <h5>{{ producto.descripcion }}</h5>
+            <br>
+            <h5 class="mb-5">${{ producto.precio }}</h5>
+            {% if user.is_superuser %}
+            <a href="{% url 'editar' producto.id %}">
+                <button class="btn-outline-primary">Editar producto</i></button>
+            </a>
+            <a href="{% url 'borrar' producto.id %}">
+                <button class="btn-outline-danger">Eliminar producto</i></button>
+
+            {% else %}
+            <a href="{% url 'agregar' producto.id %}">
+                <button class="btn-outline-success">Agregar al carrito</i></button>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

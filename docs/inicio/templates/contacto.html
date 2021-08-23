@@ -1,0 +1,46 @@
+{% extends 'inicio/base.html' %}
+{% load static %}
+{% block title %} inicio {% endblock %}
+{% block content %}
+<div class="container mx-auto my-5">
+    <h1>Contactá con nosotros!</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" class="form-control" name="nombre">
+                </div>
+            </div>
+        </div>
+    <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" class="form-control" name="email">
+                    </div>
+                </div>
+            </div>
+    <form method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="form-group">
+                            <label>Mensaje</label>
+                            <textarea type="text" class="form-control" name="mensaje" style="height:200px;"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="submit">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+</div>
+{% endblock %}

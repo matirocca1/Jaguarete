@@ -1,0 +1,58 @@
+{% extends 'productos/base.html' %}
+{% load static %}
+{% block title %} Nuevo producto {% endblock %}
+{% block content %}
+<div class="container mx-auto">
+    <h1 class="my-3">Nuevo producto</h1>
+    <form enctype="multipart/form-data" method="POST" class="my-3">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" class="form-control" name="nombre">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="form-group">
+                    <label>Descripción</label>
+                    <input type="text" class="form-control" name="descripcion">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="form-group">
+                    <label>Precio</label>
+                    <input type="number" class="form-control" name="precio">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="form-group">
+                    <label for="categorias">Categoría</label>
+                    <select name="categorias" id="categorias">
+                        <option value="1">Remeras</option>
+                        <option value="2">Camperas</option>
+                        <option value="3">Pantalones</option>
+                        <option value="4">Zapatillas</option>
+                        <option value="5">Medias</option>
+                      </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="form-group">
+                    <label>Imagen</label>
+                    <input type="file" class="form-control" name="imagen">
+                </div>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Crear"/>
+    </form>
+</div>
+{% endblock %}
